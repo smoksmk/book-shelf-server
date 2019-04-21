@@ -2,7 +2,6 @@ from app.utils import get_config
 
 env = get_config()
 
-print(env['PG_HOST'])
 APP_NAME = env['APP_NAME']
 
 PG_HOST = env['PG_HOST']

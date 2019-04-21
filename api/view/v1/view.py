@@ -1,6 +1,7 @@
 import flask
 
 from api.models.models import Book
+from app.exeptions import NotFoundError
 from app.sqlalchemy import session_scope
 from api.serializers import request
 
@@ -17,7 +18,10 @@ def books():
 @bp.route('/book/<int:id>')
 def book(id):
     with session_scope() as session:
-        book = session.query(Book).get(id)
+        try:
+            book = session.query(Book).get(id)
+        except Exception:
+            raise NotFoundError('Book not found')
         return flask.jsonify(request.book_schema.dump(book).data)
 
 
@@ -36,7 +40,10 @@ def add_book():
 def update_book(id):
     data = request.book_schema.load(flask.request.json).data
     with session_scope() as session:
-        model_book = session.query(Book).get(id)
+        try:
+            model_book = session.query(Book).get(id)
+        except Exception:
+            raise NotFoundError("Book not found")
         model_book.name = data['name']
         model_book.description = data['description']
         model_book.image = data['image']
@@ -49,7 +56,10 @@ def update_book(id):
 @bp.route('/book/<id>', methods=['DELETE'])
 def delete_book(id):
     with session_scope() as session:
-        model_book = session.query(Book).get(id)
+        try:
+            model_book = session.query(Book).get(id)
+        except Exception:
+            raise NotFoundError("Book not found")
         session.delete(model_book)
 
     return '', 204
