@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  book-shelf-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/code:rw
+    ports:
+      - "5000:5000"
+
+  postgres:
+    image: sameersbn/postgresql:10-1
+    ports:
+      - "5432:5432"
+    environment:
+      - DEBUG=false
+
+      - DB_USER=book_shelf
+      - DB_PASS=book_shelf
+      - DB_NAME=book_shelf
+
+    volumes:
+      - db-data:/var/lib/postgresql
+
+volumes:
+  db-data:
