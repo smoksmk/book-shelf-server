@@ -13,3 +13,12 @@ class Book(Base):
     description = sa.Column('description', sa.Text)
     image = sa.Column('image', sa.String(255))
     url = sa.Column('url', sa.String(255))
+
+    def __init__(self, name, description, image, url):
+        self.name = name
+        self.description = description
+        self.image = image
+        self.url = url
+
+    def __repr__(self):
+        return f'{__class__.__name__}: name: {self.name}'
