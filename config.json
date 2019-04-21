@@ -1,0 +1,15 @@
+{
+  "DEFAULT": {
+    "APP_NAME": "book-shelf",
+    "PG_HOST": "postgres",
+    "PG_USERNAME": "book_shelf",
+    "PG_PASSWORD": "book_shelf",
+    "PG_SCHEMA": "book_shelf",
+    "PG_PORT": 5432
+
+  },
+  "LOCAL": {
+    "PG_HOST": "localhost"
+  }
+
+}
