@@ -6,8 +6,12 @@ from sqlalchemy import pool
 
 from alembic import context
 
+from api.models.models import Base
+
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
+from app.config import URL
+
 config = context.config
 
 # Interpret the config file for Python logging.
@@ -18,7 +22,7 @@ fileConfig(config.config_file_name)
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = None
+target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
@@ -38,7 +42,8 @@ def run_migrations_offline():
     script output.
 
     """
-    url = config.get_main_option("sqlalchemy.url")
+    # url = config.get_main_option("sqlalchemy.url")
+    url = URL
     context.configure(
         url=url, target_metadata=target_metadata, literal_binds=True
     )
@@ -54,8 +59,12 @@ def run_migrations_online():
     and associate a connection with the context.
 
     """
+    conf = config.get_section(config.config_ini_section)
+    conf['sqlalchemy.url'] = URL
+
     connectable = engine_from_config(
-        config.get_section(config.config_ini_section),
+        # config.get_section(config.config_ini_section),
+        conf,
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
     )
