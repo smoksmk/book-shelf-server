@@ -1,0 +1,12 @@
+*.pyc
+.coverage
+.idea
+.idea/*
+.python-version
+__pycache__
+htmlcov
+logs
+logs/*
+.pytest_cache
+
+
