@@ -26,15 +26,15 @@ def session_scope():
         session.close()
 
 
-def db_connect(func):
+def db_session(func):
     def inner(*args, **kwargs):
-        session = Session()  # with all the requirements
+        session = Session()  # (this is now a scoped session)
         try:
-            func(*args, session=session, **kwargs)
+            func(*args, **kwargs) # No need to pass session explicitly
             session.commit()
         except:
             session.rollback()
             raise
         finally:
-            session.close()
+            session.remove()  # NOTE: *remove* rather than *close* here
     return inner
