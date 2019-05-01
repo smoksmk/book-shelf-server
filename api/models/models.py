@@ -14,7 +14,7 @@ class Book(Base):
     image = sa.Column('image', sa.String(255))
     url = sa.Column('url', sa.String(255))
 
-    def __init__(self, name, description, image, url):
+    def __init__(self, name=None, description=None, image=None, url=None):
         self.name = name
         self.description = description
         self.image = image

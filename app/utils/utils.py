@@ -3,7 +3,7 @@ import os
 
 
 def get_env_name():
-    namespace = os.environ.get('ENVIRONMENT')
+    namespace = os.environ.get('ENVIRONMENT').upper()
     return namespace or 'LOCAL'
 
 

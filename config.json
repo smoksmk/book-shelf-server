@@ -1,5 +1,6 @@
 {
   "DEFAULT": {
+    "LOG_LEVEL": "DEBUG",
     "APP_NAME": "book-shelf",
     "PG_HOST": "postgres",
     "PG_USERNAME": "book_shelf",
