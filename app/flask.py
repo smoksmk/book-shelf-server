@@ -3,7 +3,7 @@ from flask_cors import CORS
 
 from api.view.v1.view import bp
 from app import config
-from app.error_heandlers import register_error_handler
+from app.utils.error_heandlers import register_error_handler
 from app.utils.logging import create_logger
 
 
