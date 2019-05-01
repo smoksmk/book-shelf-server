@@ -1,7 +1,7 @@
 import flask
 
 from api.models.models import Book
-from app.exeptions import NotFoundError
+from app.utils.exeptions import NotFoundError
 from app.sqlalchemy import session_scope
 from api.serializers import request
 

@@ -3,7 +3,7 @@ import logging
 from flask import jsonify, request
 from marshmallow.exceptions import ValidationError
 from sqlalchemy.exc import DatabaseError
-from app.exeptions import InternalError
+from app.utils.exeptions import InternalError
 
 from app import config
 
